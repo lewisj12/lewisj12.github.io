@@ -1,0 +1,91 @@
+.hello-text{
+    font-family: 'Big Shoulders Text', cursive;
+    position: relative;
+    animation-name: move;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    font-size: 40px;
+}
+
+@keyframes move{
+    0%{
+       margin-left: -100px;
+    }
+    100%{
+        margin-left: 0px;
+    }
+}
+
+.name-text{
+    font-family: 'Big Shoulders Text', cursive;
+    position: relative;
+    animation-name: move;
+    animation-duration: 6s;
+    animation-iteration-count: 1;
+    font-size: 40px;
+}
+
+@keyframes move{
+    0%{
+       margin-left: -100px;
+    }
+    100%{
+        margin-left: 0px;
+    }
+}
+
+header{
+    height: 100vh;
+    font-family: 'Big Shoulders Text', cursive;
+}
+
+.welcome-text{
+    font-family: 'Big Shoulders Text', cursive;
+    position: relative;
+    animation-name: move;
+    animation-duration: 8s;
+    animation-iteration-count: 1;
+    font-size: 40px;
+}
+nav{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 20;
+    height: 100px;
+
+}
+
+.nav-text1{
+    color: grey;
+    font-family: 'Big Shoulders Text', cursive;
+    font-size: 60px;
+    float: left;
+    width: 50%;
+    text-align: right;
+    
+}
+.nav-images1{
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+.nav-text2{
+    color: grey;
+    font-family: 'Big Shoulders Text', cursive;
+    font-size: 60px;
+    float: left;
+    width: 50%;
+}
+
+.nav-images2{
+    width: 100px;
+    height: 100px;
+}
+
+.HTML{
+    float: right;
+}
+
