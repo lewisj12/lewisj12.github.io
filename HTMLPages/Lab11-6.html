@@ -148,10 +148,35 @@
             margin: auto;
         }
         
+        #pokemon-team{
+            display: flex;
+            flex-direction: column;
+            width: 50vw;
+            align-items: center;
+        }
+        
+        #team-container{
+            width: 100%;
+            max-width: 600px;
+            min-height: 544px;
+            height: fit-content;
+            background-color: rgba(0,0,0,0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-bottom: 20px;
+        }
+        
+        
     </style>
     
     <script>
     
+        let pokeTeam;     //this variable holds all the pokemon we put on our team.
+        let cardContainer;   //This variable represents the "card-container" elements on the page.
+        let cards;     //this variable holds all the "pokemon-card" elements on the page.
+        
+        
         function filterResults(){
             let inputElement = document.getElementById("searchInput");
             let searchValue = inputElement.value.toUpperCase();
@@ -170,10 +195,120 @@
             }      
         }
     
-    
+        function select(elem) { //this function will be used when the user picks a pokemon.
+            // If the pokemon was not in the team, we move it to the team.
+            // If pokemon was on team, we remove it and put it back in the search container.
+            
+          if (pokeTeam.includes(elem))  {  //check to see if chosen pokemon is on the team.
+              
+              pokeTeam = pokeTeam.filter(function(poke){ //Pokemon was in the team, remove it from pokeTeam.
+              return poke != elem;
+              
+              })
+              
+              cardContainer.appendChild(elem); //Put pokemon back in search container. This will put pokemon at end of list.
+              
+              
+              } else { //pokemon was not on the team.
+              if(pokeTeam.length<6){  //making sure we have less than 6 pokemon before...
+              pokeTeam.push(elem); //we add it to the team
+              }
+              
+            }
+       
+            
+            function sortPokemon(){
+                let i, stillSorting, pokeCards, needSort;
+                
+                stillSorting = true; //sentiel value: if true, there are still elements that need to be sorted.
+                
+                while(stillSorting){
+                    stillSorting = false; //set sentiel to false.
+                    
+                    pokeCards = cardContainer.getElementsByClassName("pokemon-card"); //get all the pokemon cards
+                    
+                    for(i = 0; i < (pokeCards.length -1); i++){
+                        needSort = false;
+                        
+                        //if(the number of a pokemon card is greater than the one after it, we need them to switch places Ex: #003, #002 -> #002, #003)
+                        
+                        if(pokeCards[i].getElementsByClassName("number")[0].textContent > pokeCards[i+1].getElementsByClassName("number")[0].textContent){
+                            needSort = true;
+                            break;
+                        }
+                      }
+                    
+                //If we needed to switch places, we switch those pokemon cards here.
+                if(needSort){
+                    pokeCards[i].parentNode.insertBefore(pokeCards[i+1], pokeCards[i]);
+                }
+               
+                    let teamContainer = document.getElementById("team-container"); //creating a variable for the team container.
+                    for (i = 0; i < pokeTeam.length; i++) {
+                        teamContainer.appendChild(pokeTeam[i]); //put all pokemon on the team into the team container.
+                    }
+                    
+                    sortPokemon();
+                
+              }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+        
+        let teamContainer = document.getElementById("team-container"); //creating a variable for the team container.
+            for (i = 0; i < pokeTeam.length; i++){
+                teamContainer.appendChild(pokeTeam[i]); //put all pokemon on the team into the team container.
+            }
+        
+        
+        
+        }
+        
+        
+        let pokeTeam;    //this variable holds all the pokemon we put on our team.
+        let cardContainer;   //this variable represents the "card-container" section.
+        let cards;    //this variable holds all the "pokemon-card" elements on the page.
+        
+        window.onload = function() {  //This function will happen after all the HTML and css for the page loads
+        
+            pokeTeam = new Array();
+            cardContainer = document.getElementsById("card-container");
+            
+            cards = cardContainer.getElementsByClassName("pokemon");
+            
+            for(i = 0; 1 < cards.length; i++){
+                cards[i].setAttribute("onclick","select(this)");  //this goes through all the pokemon-cards and sets the onclick="select(this)"
+            }
+        
+        }
+        
+        
     
     
     </script>
+    
     
     </head>
 
@@ -545,11 +680,19 @@
         
     </section>
     
-    <section>
+    <section id="pokemon-team">
     
+    <header>
+        
+        <h1>Your Team:</h1>    
+        
+    </header>
     
-    
-    
+    <div id="team-container">
+        
+        
+        
+    </div>
     
     </section>
     
